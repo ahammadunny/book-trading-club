@@ -1,0 +1,34 @@
+      <% include /app/views/head %>
+      <% include /app/views/header2 %>
+        <div class="text-center">
+            <h1>Book Trading Club</h1>
+          </div>
+
+        <div class="panel panel-inverse">
+            <div class="panel-body">
+
+<h1>What will you trade for</h1>
+        <p>
+          <% var srcc = book.imageUrl%>;
+          <img src="<%=srcc%>"
+               class="book-thumb img-responsive">
+        </p>
+         <% var booktitle = book.title%>;
+              <h4 class="panel-title"><%=booktitle%></h4>
+            </div>
+        </div>
+<h1>
+  you have <%=myBooks.length%>books to trade with.
+</h1>
+<div class="row">
+  <%for(var i=0; i<myBooks.length;i++){%>
+  <div class="col-sm-4 col-md-3">
+    <img src="<%=myBooks[i].imageUrl%>" class="book-thumb img-responsive">
+    
+  </div>
+  <div class="panel-footer">
+   <a href="/trade/request/book._id/this._id" class="btn btn-primary btn-block">Offer this book</a> 
+  </div>
+  <%}%>
+  
+</div>

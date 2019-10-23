@@ -1,0 +1,31 @@
+ <% include /app/views/head %>
+<% include /app/views/header2 %>
+<br>
+<div class="container">
+    <div class="row mt-4 mb-4">
+        <% books.forEach(function(book){ %>
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <p class="card-header">
+                        <%= book.title %>
+                    </p>
+                    <img src="<%= book.thumbnail %>" alt="Card Image" class="center-block mt-4 mb-4" style="height:168px;width:128px;display:block;">
+                    <div class="card-block">
+
+                            <form action="/profile/addBook" method="post">
+                           
+                           
+                                <input type="hidden" name="id" value="<%= book.id %>">
+                                <input type="hidden" name="title" value="<%= book.title %>">
+                                <input type="hidden" name="authors" value="<%= book.authors %>">
+                                <input type="hidden" name="imageUrl" value="<%= book.thumbnail %>">
+                                <input type="submit" class="card-link btn btn-primary btn-block" value="Add Book">
+                            </form>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+    </div>
+</div>
+
+ 

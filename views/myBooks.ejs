@@ -1,0 +1,55 @@
+<head>
+ <% include /app/views/head.ejs %>
+ <% include /app/views/header2.ejs %>
+</head>
+
+
+<h1 class="page-title">My Books</h1>
+<% if(user) { %>
+  <form action="/search" method=get>
+    <div class="form-group">
+        <div class="input-group col-lg-8 center offset-lg-2">
+            <input type="text" class="form-control" placeholder="Book Title..." name="title">
+            <span class="input-group-btn">
+                <button class="btn btn-success" type="submit">Search</button>
+            </span>
+        </div>
+    </div>
+</form>
+  
+<%  } %>
+
+  <p>You have posted <%= books.length %> books</p>
+  <br>
+
+<div class= "container" >
+  
+<div class="book-list row">
+<% books.forEach(function(book){ %>
+           <% console.log("books are"+JSON.stringify(books)) %>
+            <div class="col-lg-3 mt-2 mb-2">
+             <% if (book.imageUrl) { %>
+              <img src="<%= book.imageUrl %>" alt="" class="thumb-nail img-responsive" >
+              <% } else { %>
+             <% if (book.image) { %>
+             <img src = "<%= book.image %>" alt = "" class = "thumb-nail img-responsive"  >
+             <% } else { %>
+                                              
+             <img src "<%= book.thumb %>" alt ="" class = "thumb-nail img-responsive"  >  
+             <%   } %>
+             <% } %>
+            <div class="card-block">
+            <form action="/profile/trade/<%= book._id %>" method="post">
+             <input type="submit" class="btn btn-primary btn-block " value="Trade">
+             </form>
+             </div>
+              <div class = "card">
+                <a href="/remove-book/<%= book._id%>" class="btn btn-danger btn-xs ">remove</a>
+                <h4 class="panel-title"><%= book.title %></h4>
+                
+              </div>
+             </div>
+             <% }) %>
+            </div>
+  </div>
+</html>

@@ -1,0 +1,30 @@
+
+<header class="page-header jumbotron">
+  <div class="container relative">
+    <h2>Book Trading <small>Application</small></h2>
+    <p class="lead">by Ahammadunny Pathiaseril</p>
+
+    <nav class="page-nav">
+      <ul class="form-inline">
+        <li><a href="/" class="btn btn-link">Books</a></li>
+        <% if (user)  { %> 
+          <li><a href="/myBooks" class="btn btn-link">My Books</a></li>
+          <li><a href="/trades" class="btn btn-link">My Trades</a></li>
+          <li><a href="/contact/<%=id %>" class="btn btn-link">Profile</a></li>
+          <li><a href="/logout" class="btn btn-link">Logout</a></li>
+        <li><a href = "/restpass"  class = "btn btn-link">resetpass</a> </li>
+     <%   } else { %>
+          <li>
+            <li><a href ="/signup" class= "btn btn-link">signup</a></li>
+             
+        <li><a href ="/login" class= "btn btn-link">login</a></li>
+            <a href="/auth/twitter" class="btn btn-info">
+              Login with Twitter
+              <span class="fa fa-twitter"></span>
+            </a>
+          </li>
+        <% } %>
+      </ul>
+    </nav>
+  </div>
+</header>

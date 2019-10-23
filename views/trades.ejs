@@ -1,0 +1,35 @@
+<h1 class="page-title">My Trades</h1>
+<% trades.forEach(function(trade){ %>
+var obj = Json.parse(trade)
+ <h2>
+  <%= JSON.stringify(trade.from) %>
+  </h2>
+<h1>
+  <%=trade.from.username %>
+</h1>
+  <div class="alert alert-info">
+    <div class="btn-group pull-right">
+      <a href="/trade/accept/<%=trade._id %>" class="btn btn-success btn-xs">
+        Accept
+        <span class="fa fa-check"></span>
+      </a>
+      <a href="/trade/reject/<%=trade._id %>" class="btn btn-danger btn-xs">
+        Reject
+        <span class="fa fa-close"></span>
+      </a>
+    </div>
+   <% var  book1 = JSON.stringify(trade.book1.title ) %>
+   <% console.log("book1 is" +book1) %>;
+   <% var  book2 = JSON.stringify(trade.book2.title) %>;
+    <% if(book1==book2)  { %>
+    <%=JSON.stringify(trade.from.username) %> would like to buy your<strong><%=JSON.stringify(trade.book1.title) %></strong>
+    <% } else { %>
+   <%=JSON.stringify(trade.from.username) %> would like to trade their <strong><%= JSON.stringify(trade.book2.title) %></strong> for your <strong>
+    <%=JSON.stringify(trade.book1.title) %></strong>.
+    <% } %>
+    
+  </div>
+<% }) %>
+<% if (trades.length == 0) { %>
+  <p class="text-center"><em>No new trades have been requested at this time.</em></p>
+<% } %>

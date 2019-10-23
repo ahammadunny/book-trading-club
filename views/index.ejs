@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Book Trading Club</title>
+    <meta name="description" content="Book Trading Club">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css" media="all">
+    <link rel="stylesheet" href="https:./style.css">
+  
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  -->
+  <!--
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.3/yeti/bootstrap.min.css"> 
+-->
+
+</head>
+ <% include /app/views/head.ejs %> 
+<% include /app/views/header2.ejs %>
+ 
+
+  
+<% if(user) { %>
+  <form action="/search" method=get>
+    <div class="form-group">
+        <div class="input-group col-lg-8 offset-lg-2">
+            <input type="text" class="form-control" placeholder="Book Title..." name="title">
+            <span class="input-group-btn">
+                <button class="btn btn-success" type="submit">Search</button>
+            </span>
+        </div>
+    </div>
+</form>
+  
+<%  } %>
+
+        
+    <div class="container">
+        <!-- columns should be the immediate child of a .row -->
+        <h2 class="mt-2">All Books</h2>
+      <div class="row  row-m-t">
+        <!--<h1> trial</h1> -->
+                                    <% books.forEach(function(book){ %>
+                                         <div class="col-sm-3 mt-2 mb-2">
+                                         <div class = "card" style = "width:200px; height:375px">
+                   <%  if(book.image) { %>
+                        <a href = "/profile/trade/<%=book._id %>" >
+                        <img src="<%= book.image %>" alt="<%= book.title %>" class="img-responsive"> 
+                        <div>
+                          
+                          <h3>
+                            this is image
+                          </h3>
+                        <%= book.title %> 
+                        </div>
+                        </a> 
+                                           
+                       <a href = "/profile/contact/<%=book._user %>"  > 
+                         <div>
+                         contact owner
+                         </div>
+                       </a>
+                                       <% } else {%>
+                                              
+                                              <% if (book.imageUrl) { %>
+                        <a href = "/profile/trade/<%=book._id %>" >
+                       <img src = "<%= book.imageUrl %>" alt ="<%= book.title %>" >
+                        <div>
+                          <h3>
+                             this is imageUrl
+                          </h3>
+                        <%= book.title %> 
+                        </div>
+                        </a>
+                           
+                        <a href = "/profile/contact/<%=book._user %>" >
+                        <div>
+                         contact owner
+                        </div>
+                        </a>
+                                        <% } else { %>
+                         <a href = "/profile/trade/<%=book._id %>" >                    
+                        <img src = "<%= book.thumb %>" alt ="<%= book.title %>"> 
+                        <div>
+                          <h3>
+                            this is thumb
+                          </h3>
+                        <%= book.title %> 
+                        </div>
+                         </a>
+                                                                               
+                      <a href = "/profile/contact/<%=book.uid %>" >
+                       <div>
+                      
+                      contact owner
+                        </div>
+                      </a>
+                                           <%   } %>
+                                           
+                                   <% } %>     
+                                                
+                                           </div>
+                                        </div>
+                                        <% }) %>
+                                </div>
+  </div>
+      
+      
+
+
+</html>
